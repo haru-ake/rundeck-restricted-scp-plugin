@@ -1,0 +1,26 @@
+name: Restricted file copier plugin via scp
+rundeckPluginVersion: 1.0
+author: HARU Akebono
+date: 11/11/2016
+version: 1.0
+providers:
+  - name: restricted-scp-copier
+    service: FileCopier
+    title: restricted-scp-copier
+    description: Restricted file copier plugin via scp
+    plugin-type: script
+    script-interpreter: /bin/bash
+    script-file: ssh-copy.sh
+    script-args: ${node.username} ${node.hostname} ${file-copy.file}
+    config:
+      - name: ssh_key_storage_path
+        title: SSH key Storage Path
+        type: String
+        required: false
+        description: "Optional storage path for ssh-key file. Can contain property references to node attributes. A node attribute named ssh-key-storage-path will override this value."
+        scope: Instance
+        renderingOptions:
+          selectionAccessor: "STORAGE_PATH"
+          valueConversion: "STORAGE_PATH_AUTOMATIC_READ"
+          storage-path-root: "keys"
+          instance-scope-node-attribute: "ssh-key-storage-path"

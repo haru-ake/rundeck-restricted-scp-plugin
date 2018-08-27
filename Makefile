@@ -8,4 +8,4 @@ $(pluginfile): $(FILES)
 	zip -r $(pluginfile) $(pluginname)
 
 clean:
-	@-rm -rf $(pluginfile)
+	@-rm -f $(pluginfile)
